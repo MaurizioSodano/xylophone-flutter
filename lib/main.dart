@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(XylophoneApp());
 
-class MyApp extends StatelessWidget {
+class XylophoneApp extends StatelessWidget {
   final buttonColors = [
     Colors.red,
     Colors.deepOrange,
@@ -23,21 +21,24 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.black,
         body: SafeArea(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               for (var i = 1; i <= 7; i += 1)
-                TextButton(
-                  onPressed: () {
-                    AssetsAudioPlayer.newPlayer().open(
-                      Audio("assets/note$i.wav"),
-                      autoStart: true,
-                      showNotification: true,
-                    );
-                    print("Clicked $i button");
-                  },
-                  child: Text('Click me'),
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(buttonColors[i - 1]),
+                Expanded(
+                  child: TextButton(
+                    onPressed: () {
+                      AssetsAudioPlayer.newPlayer().open(
+                        Audio("assets/note$i.wav"),
+                        autoStart: true,
+                        showNotification: true,
+                      );
+                      print("Clicked $i button");
+                    },
+                    child: Text(''),
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(buttonColors[i - 1]),
+                    ),
                   ),
                 )
             ],
